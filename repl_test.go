@@ -23,7 +23,7 @@ func TestCleanInput(t *testing.T){
 		},
 		{
 			input: "       ",
-			expected: []string{""},
+			expected: []string{},
 		},
 	}
 
@@ -31,7 +31,7 @@ func TestCleanInput(t *testing.T){
 		actual := cleanInput(c.input)
 		// Check the length of the actual slice against the expected slice
 		if len(actual) != len(c.expected){
-			t.Errorf("case %d: string length is not match. Expected: %v. Got: %v" k+1, c.expected, actual)
+			t.Errorf("case %d: string length is not match. Expected: %v. Got: %v", k+1, len(c.expected), len(actual))
 			// if they don't match, use t.Errorf to print an error message
 			// and fail the test
 		}
@@ -41,7 +41,7 @@ func TestCleanInput(t *testing.T){
 			expectedWord := c.expected[i]
 			// Check each word in the slice
 			if word != expectedWord{
-				t.Errorf("case %d: string word does not match. Expected: %v. Got: %v" k+1, expectedWord, word)
+				t.Errorf("case %d: string word does not match. Expected: %v. Got: %v", k+1, expectedWord, word)
 			}
 			// if they don't match, use t.Errorf to print an error message
 			// and fail the test
