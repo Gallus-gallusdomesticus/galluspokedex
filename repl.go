@@ -20,6 +20,11 @@ func getCommands() map[string]cliCommand {
 			description: "Exit the pokedex",
 			callback:    commandExit,
 		},
+		"help": {
+			name:        "help",
+			description: "Display a help message",
+			callback:    commandHelp,
+		},
 	}
 }
 
@@ -42,7 +47,7 @@ func startRepl() {
 		cmd, ok := commands[commandName]
 		if !ok {
 			fmt.Println("Unknown command")
-			return
+			continue
 		}
 
 		err := cmd.callback()
