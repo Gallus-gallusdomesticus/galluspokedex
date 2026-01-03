@@ -7,15 +7,20 @@ import (
 	"strings"
 )
 
-func replbase() {
-	newscan := bufio.NewScanner(os.Stdin)
+func startRepl() {
+	newscan := bufio.NewScanner(os.Stdin) //for the input
 
 	for {
-		fmt.Print("Pokedex > ")
-		newscan.Scan()
-		input := newscan.Text()
-		cleaned := cleanInput(input)
-		fmt.Println("Your command was:", cleaned[0])
+		fmt.Print("Pokedex > ")      //print the prompt
+		newscan.Scan()               //scan what being input
+		input := newscan.Text()      //convert it to string
+		cleaned := cleanInput(input) //clean the string
+
+		if len(cleaned) == 0 { //conditional to prevent panic if no input given
+			continue
+		}
+
+		fmt.Printf("Your command was: %s\n", cleaned[0])
 	}
 }
 
