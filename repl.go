@@ -5,12 +5,20 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/Gallus-gallusdomesticus/galluspokedex/internal/pokeapi"
 )
+
+type config struct {
+	Next      *string
+	Previous  *string
+	ApiClient *pokeapi.Client
+}
 
 type cliCommand struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(*config) error
 }
 
 func getCommands() map[string]cliCommand {
@@ -25,10 +33,20 @@ func getCommands() map[string]cliCommand {
 			description: "Display a help message",
 			callback:    commandHelp,
 		},
+		"map": {
+			name:        "map",
+			description: "Display 20 location name",
+			callback:    commandMap,
+		},
+		"mapb": {
+			name:        "mapb",
+			description: "Display previous 20 location name",
+			callback:    commandMapb,
+		},
 	}
 }
 
-func startRepl() {
+func startRepl(cfg *config) {
 	newscan := bufio.NewScanner(os.Stdin) //for the input
 
 	for {
@@ -50,7 +68,7 @@ func startRepl() {
 			continue
 		}
 
-		err := cmd.callback()
+		err := cmd.callback(cfg)
 		if err != nil {
 			fmt.Println(err)
 		}
