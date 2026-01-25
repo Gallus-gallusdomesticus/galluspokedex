@@ -1,11 +1,21 @@
 package main
 
-import "github.com/Gallus-gallusdomesticus/galluspokedex/internal/pokeapi"
+import (
+	"net/http"
+	"time"
+
+	"github.com/Gallus-gallusdomesticus/galluspokedex/internal/pokeapi"
+)
 
 func main() {
 
+	httpClient := &http.Client{
+		Timeout: 5 * time.Second,
+	}
+
+	pokeClient := pokeapi.NewClient(httpClient, 5*time.Minute)
 	cfg := &config{
-		ApiClient: pokeapi.NewClient(nil),
+		ApiClient: pokeClient,
 	}
 	startRepl(cfg)
 }
