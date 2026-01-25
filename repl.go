@@ -5,15 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
-
-	"github.com/Gallus-gallusdomesticus/galluspokedex/internal/pokeapi"
 )
-
-type config struct {
-	Next      *string
-	Previous  *string
-	ApiClient *pokeapi.Client
-}
 
 type cliCommand struct {
 	name        string
