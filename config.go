@@ -8,4 +8,5 @@ type config struct {
 	Next      *string
 	Previous  *string
 	ApiClient *pokeapi.Client
+	pokedex   map[string]pokeapi.PokemonType
 }

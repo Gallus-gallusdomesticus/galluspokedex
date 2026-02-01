@@ -40,6 +40,11 @@ func getCommands() map[string]cliCommand {
 			description: "List the pokemon on the specified area",
 			callback:    commandExplore,
 		},
+		"catch": {
+			name:        "catch <pokemon>",
+			description: "Catch pokemon based on their base experience",
+			callback:    commandCatch,
+		},
 	}
 }
 
@@ -62,7 +67,7 @@ func startRepl(cfg *config) {
 		}
 
 		commandName := cleaned[0] //the first word is the command
-		commands := getCommands() //access the map
+		commands := getCommands() //access the command
 
 		cmd, ok := commands[commandName]
 		if !ok {

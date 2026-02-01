@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-// ListPokemon fetches one page of pokemon in location-areas
+// GetLocation fetches one page of pokemon in location-areas
 
 func (c *Client) GetLocation(area string) (LocationType, error) {
 
