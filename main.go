@@ -16,6 +16,7 @@ func main() {
 	pokeClient := pokeapi.NewClient(httpClient, 5*time.Minute)
 	cfg := &config{
 		ApiClient: pokeClient,
+		pokedex:   map[string]pokeapi.PokemonType{},
 	}
 	startRepl(cfg)
 }
