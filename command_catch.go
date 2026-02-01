@@ -24,8 +24,13 @@ func commandCatch(cfg *config, args ...string) error {
 
 	fmt.Printf("Throwing a Pokeball at %s...\n", pok.Name)
 	if throwNum >= pok.Exp {
+
 		fmt.Printf("%s was caught!\n", pok.Name)
-		cfg.pokedex[pok.Name] = pok
+		if _, exists := cfg.pokedex[pok.Name]; !exists {
+			cfg.pokedex[pok.Name] = pok
+			fmt.Println("You may now inspect it with the inspect command.")
+		}
+
 	} else {
 		fmt.Printf("%s escaped!\n", pok.Name)
 	}
